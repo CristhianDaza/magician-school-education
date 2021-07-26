@@ -1,7 +1,9 @@
 <template>
   <v-container>
-    <h1 class="title mb-5">Select House</h1>
-    <v-row class="mx-auto mt-5">
+    <h1 class="title">
+      Select House
+    </h1>
+    <v-row class="containerHouses">
       <v-col
         cols="12"
         sm="6"
@@ -9,12 +11,13 @@
         lg="3"
         v-for="house in houses" :key="house.id"
       >
-        <v-img
+        <h2>
+          {{ house.name }}
+        </h2>
+        <img
           :alt="house.name"
           :src="house.image"
-          :min-width="house.width"
         >
-        </v-img>
       </v-col>
     </v-row>
   </v-container>
@@ -36,10 +39,21 @@ export default {
 <style>
   .title {
     text-align: center;
-    font-size: 50px;
+    font-size: 80px;
+    margin: 25px auto;
+    letter-spacing: 10px;
   }
 
-  .imageHouse {
-    min-width: 250px;
+  .containerHouses > div {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .containerHouses h2 {
+    font-size: 40px;
+    letter-spacing: 2px;
   }
 </style>
