@@ -23,6 +23,23 @@ a {
   text-decoration: none;
 }
 
+.back {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  cursor: pointer;
+  display: inline-block;
+  transition: all 200ms;
+}
+
+.back:hover {
+  color: cornflowerblue;
+}
+
+.back::before {
+  padding-right: 5px;
+  content: "<";
+}
+
 @media (min-width: 1904px) {
   .container {
     max-width: 1185px !important;

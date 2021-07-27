@@ -3,6 +3,7 @@
     <Loader v-if="isLoading"/>
     <template v-else>
       <v-container>
+        <Back />
         <v-row>
           <v-col
             cols="12"
@@ -25,6 +26,7 @@
 <script>
 import { getCharacterByHouse } from '@/api/getCharacterByHouse'
 import Loader from '@/components/global/Loader.vue'
+import Back from '@/components/global/Back.vue'
 import ListCharacteres from '@/components/ListCharacteres.vue'
 
 export default {
@@ -37,7 +39,8 @@ export default {
   },
   components: {
     Loader,
-    ListCharacteres
+    ListCharacteres,
+    Back
   },
   methods: {
     fetchData () {
