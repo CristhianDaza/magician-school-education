@@ -1,6 +1,8 @@
 <template>
   <div>
-    <Loader v-if="isLoading"/>
+    <div v-if="isLoading" class="loaderComponent">
+      <Loader />
+    </div>
     <v-container v-else>
       <Back />
       <div class="characterName" v-if="character !== null">
@@ -13,7 +15,7 @@
           <p v-if="character[0].gender !== ''"><strong>Gender: </strong>{{ character[0].gender }}</p>
           <p v-if="character[0].house !== ''"><strong>House: </strong>{{ character[0].house }}</p>
           <p v-if="character[0].dateOfBirth !== ''"><strong>Date of Birth: </strong>{{ character[0].dateOfBirth }}</p>
-          <p v-if="character[0].yearOfBirth !== ''"><strong>Years Old: </strong>{{ year }}</p>
+          <p v-if="character[0].yearOfBirth !== ''"><strong>Years: </strong>{{ year }} years old</p>
           <p v-if="character[0].ancestry !== ''"><strong>Ancestry: </strong>{{ character[0].ancestry }}</p>
           <p v-if="character[0].hairColour !== ''"><strong>Hair Colour: </strong>{{ character[0].hairColour }}</p>
           <p v-if="character[0].eyeColour !== ''"><strong>Eye Colour: </strong>{{ character[0].eyeColour }}</p>

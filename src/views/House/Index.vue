@@ -1,6 +1,8 @@
 <template>
   <div>
-    <Loader v-if="isLoading"/>
+    <div v-if="isLoading" class="loaderComponent">
+      <Loader />
+    </div>
     <template v-else>
       <v-container>
         <Back />
