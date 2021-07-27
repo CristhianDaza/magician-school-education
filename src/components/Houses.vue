@@ -56,8 +56,6 @@ export default {
   }
 
   .containerHouses > div > a {
-    color: inherit;
-    text-decoration: none;
     text-align: center;
   }
 
