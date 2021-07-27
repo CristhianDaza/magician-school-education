@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <h1>Magician School Education</h1>
     <Houses />
   </div>
 </template>
