@@ -50,6 +50,16 @@ export default {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .containerHouses img,
+  .containerHouses h2 {
+    cursor: pointer;
+  }
+
+  .containerHouses > div:hover {
+    transform: translateY(-10px);
   }
 
   .containerHouses h2 {
