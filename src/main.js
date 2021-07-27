@@ -5,6 +5,7 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import './assets/css/globalStyles.css'
+import '@babel/polyfill'
 
 Vue.config.productionTip = false
 

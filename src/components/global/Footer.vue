@@ -5,12 +5,10 @@
   >
     <v-container>
       <v-card
-        class="flex"
-        flat
-        tile
+        dark
       >
-        <v-card-title class="teal">
-          <strong class="subheading">Magician School Education</strong>
+        <v-card-title>
+          <strong>Magician School Education</strong>
 
           <v-spacer></v-spacer>
 
@@ -27,7 +25,7 @@
           </v-btn>
         </v-card-title>
 
-        <v-card-text>
+        <v-card-text class="year">
           {{ new Date().getFullYear() }} — <strong>Cristhian Daza</strong>
         </v-card-text>
       </v-card>
@@ -50,3 +48,14 @@ export default {
   }
 }
 </script>
+
+<style>
+  .year {
+    text-align: center;
+  }
+
+  .v-card.v-sheet.theme--dark {
+    background: transparent;
+    box-shadow: none !important;
+  }
+</style>
