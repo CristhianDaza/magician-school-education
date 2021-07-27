@@ -4,6 +4,9 @@
     <template v-else>
       <v-container>
         <Back />
+        <Search
+          @input="searchName"
+        />
         <v-row>
           <v-col
             cols="12"
@@ -25,9 +28,11 @@
 
 <script>
 import { getCharacterByHouse } from '@/api/getCharacterByHouse'
+import { getCharacterByName } from '@/api/getCharacterByName'
 import Loader from '@/components/global/Loader.vue'
 import Back from '@/components/global/Back.vue'
 import ListCharacteres from '@/components/ListCharacteres.vue'
+import Search from '@/components/Search.vue'
 
 export default {
   name: 'House',
@@ -40,7 +45,8 @@ export default {
   components: {
     Loader,
     ListCharacteres,
-    Back
+    Back,
+    Search
   },
   methods: {
     fetchData () {
@@ -53,6 +59,18 @@ export default {
         })
         .finally(() => {
           this.isLoading = false
+        })
+    },
+    searchName (search) {
+      const { house } = this.$route.params
+      getCharacterByName()
+        .then(({ data }) => {
+          const result = data.filter(character => {
+            if (character.house === house) {
+              return character.name.toLowerCase().indexOf(search.toLowerCase()) > -1
+            }
+          })
+          this.characteres = result
         })
     }
   },
