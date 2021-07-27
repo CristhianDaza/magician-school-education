@@ -11,13 +11,15 @@
         lg="3"
         v-for="house in houses" :key="house.id"
       >
-        <h2>
-          {{ house.name }}
-        </h2>
-        <img
-          :alt="house.name"
-          :src="house.image"
-        >
+        <router-link :to="{path: `/${house.name}`}">
+          <h2>
+            {{ house.name }}
+          </h2>
+          <img
+            :alt="house.name"
+            :src="house.image"
+          >
+        </router-link>
       </v-col>
     </v-row>
   </v-container>
@@ -51,6 +53,12 @@ export default {
     justify-content: space-between;
     align-items: center;
     transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .containerHouses > div > a {
+    color: inherit;
+    text-decoration: none;
+    text-align: center;
   }
 
   .containerHouses img,
