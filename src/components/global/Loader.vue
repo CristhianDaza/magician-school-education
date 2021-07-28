@@ -23,7 +23,6 @@ export default {
 
 <style>
   .loader {
-    color: official;
     display: inline-block;
     position: relative;
     width: 80px;
@@ -42,7 +41,7 @@ export default {
     width: 6px;
     height: 18px;
     border-radius: 20%;
-    background: #cef;
+    background: midnightblue;
   }
   .loader div:nth-child(1) {
     transform: rotate(0deg);
