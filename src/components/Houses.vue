@@ -41,9 +41,14 @@ export default {
 <style>
   .title {
     text-align: center;
-    font-size: 80px;
-    margin: 25px auto;
-    letter-spacing: 10px;
+    font-size: 70px;
+    margin: 35px auto;
+    letter-spacing: 15px;
+    color: white;
+  }
+
+  .containerHouses {
+    margin-bottom: 25px;
   }
 
   .containerHouses > div {
@@ -57,6 +62,7 @@ export default {
 
   .containerHouses > div > a {
     text-align: center;
+    color: white;
   }
 
   .containerHouses img,
@@ -69,7 +75,8 @@ export default {
   }
 
   .containerHouses h2 {
-    font-size: 40px;
+    font-size: 35px;
     letter-spacing: 2px;
+    margin: 25px 0;
   }
 </style>

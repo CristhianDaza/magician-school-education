@@ -38,7 +38,7 @@ export default {
 
   .character:hover {
     transform: translateY(-10px);
-    box-shadow: 11px 9px 19px -4px rgba(0,0,0,0.75) !important;
+    box-shadow: 11px 9px 19px -4px rgba(255,255,255,.5) !important;
   }
 
   .imgCharacter {

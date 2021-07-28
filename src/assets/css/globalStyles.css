@@ -7,6 +7,14 @@
 
 body {
   font-family: 'Source Sans Pro', sans-serif;
+  background-image: url("../img/fondo.webp");
+  background-position: center;
+  background-size: cover;
+  color: white;
+}
+
+.main {
+  min-height: 75vh;
 }
 
 h1,

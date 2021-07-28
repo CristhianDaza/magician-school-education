@@ -4,6 +4,7 @@
     v-model="search"
     label="Search..."
     outlined
+    dark
     hint="Search by name"
   ></v-text-field>
 </template>
