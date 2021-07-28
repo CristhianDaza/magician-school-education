@@ -40,12 +40,12 @@ a {
 }
 
 .back:hover {
-  color: midnightblue;
+  color: cornsilk;
 }
 
 .back::before {
   padding-right: 5px;
-  content: "<";
+  content: "⬅";
 }
 
 .loaderComponent {
