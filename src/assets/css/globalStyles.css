@@ -37,6 +37,7 @@ a {
   cursor: pointer;
   display: inline-block;
   transition: all 200ms;
+  user-select: none;
 }
 
 .back:hover {

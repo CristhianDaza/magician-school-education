@@ -14,8 +14,8 @@
         </p>
         <v-row>
           <v-col
-            cols="12"
-            sm="6"
+            cols="6"
+            sm="3"
             md="3"
             lg="2"
             v-for="character in characteres"
@@ -113,5 +113,6 @@ export default {
     margin-bottom: 15px;
     cursor: pointer;
     display: inline-block;
+    user-select: none;
   }
 </style>

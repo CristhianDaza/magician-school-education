@@ -73,6 +73,7 @@ export default {
 <style>
   .characterName {
     display: flex;
+    flex-wrap: wrap;
     margin-top: 50px;
     justify-content: center;
     align-items: center;
@@ -92,5 +93,12 @@ export default {
 
   .characterNameInfo p strong {
     font-size: 1.1rem;
+  }
+
+  @media (max-width: 425px) {
+    .characterNameInfo {
+      margin: 10px 0 0 0;
+      text-align: center;
+    }
   }
 </style>
