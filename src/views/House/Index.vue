@@ -33,11 +33,11 @@
 
 <script>
 import { getCharacterByHouse } from '@/api/getCharacterByHouse'
-import { getCharacterByName } from '@/api/getCharacterByName'
+import { getCharacter } from '@/api/getCharacter'
 import Loader from '@/components/global/Loader.vue'
 import Back from '@/components/global/Back.vue'
-import ListCharacteres from '@/components/ListCharacteres.vue'
-import Search from '@/components/Search.vue'
+import ListCharacteres from '@/components/House/ListCharacteres.vue'
+import Search from '@/components/House/Search.vue'
 
 export default {
   name: 'House',
@@ -69,7 +69,7 @@ export default {
     },
     searchName (search) {
       const { house } = this.$route.params
-      getCharacterByName()
+      getCharacter()
         .then(({ data }) => {
           const result = data.filter(character => {
             if (character.house === house) {

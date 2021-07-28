@@ -1,10 +1,10 @@
 import { get } from 'axios'
 
-function getCharacterByName () {
+function getCharacter () {
   const URL = 'https://hp-api.herokuapp.com/api/characters/'
   return get(URL)
 }
 
 export {
-  getCharacterByName
+  getCharacter
 }

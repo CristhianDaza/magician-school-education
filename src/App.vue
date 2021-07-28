@@ -1,16 +1,22 @@
 <template>
   <div>
-    <MainLayout />
+    <Header />
+    <div class="main">
+      <router-view/>
+    </div>
+    <Footer />
   </div>
 </template>
 
 <script>
-import MainLayout from '@/layouts/MainLayout.vue'
+import Header from '@/components/global/Header.vue'
+import Footer from '@/components/global/Footer.vue'
 
 export default {
   name: 'app',
   components: {
-    MainLayout
+    Header,
+    Footer
   }
 }
 </script>

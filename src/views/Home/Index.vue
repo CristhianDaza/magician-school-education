@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <Houses />
-  </div>
+  <Houses />
 </template>
 
 <script>
-import Houses from '@/components/Houses.vue'
+import Houses from '@/components/Home/Houses.vue'
 
 export default {
   name: 'Home',
