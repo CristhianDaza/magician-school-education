@@ -9,6 +9,9 @@
         <Search
           @input="searchName"
         />
+        <p @click="sortByName" class="sort">
+          Sort by Name {{ character !== null ? '👇' : '☝️' }}
+        </p>
         <v-row>
           <v-col
             cols="12"
@@ -41,7 +44,8 @@ export default {
   data () {
     return {
       isLoading: false,
-      characteres: []
+      characteres: [],
+      character: null
     }
   },
   components: {
@@ -74,6 +78,29 @@ export default {
           })
           this.characteres = result
         })
+    },
+    sortByName () {
+      const { house } = this.$route.params
+
+      if (this.character === null) {
+        getCharacterByHouse({ house })
+          .then(({ data }) => {
+            this.character = data
+            const sort = this.character.slice(0)
+            sort.sort((a, b) => {
+              const x = a.name.toLowerCase()
+              const y = b.name.toLowerCase()
+              return x < y ? -1 : x > y ? 1 : 0
+            })
+            this.characteres = sort
+          })
+      } else {
+        getCharacterByHouse({ house })
+          .then(({ data }) => {
+            this.characteres = data
+            this.character = null
+          })
+      }
     }
   },
   created () {
@@ -82,3 +109,10 @@ export default {
   }
 }
 </script>
+
+<style>
+  .sort {
+    margin-bottom: 15px;
+    cursor: pointer;
+  }
+</style>
