@@ -56,6 +56,12 @@ a {
   min-height: 60vh;
 }
 
+.v-card.v-sheet.theme--light.character {
+  background: rgba(0, 0, 0, .5);
+  color: white;
+  font-weight: bold;
+}
+
 @media (min-width: 1904px) {
   .container {
     max-width: 1185px !important;
