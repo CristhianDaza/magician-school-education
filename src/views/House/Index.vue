@@ -10,7 +10,7 @@
           @input="searchName"
         />
         <p @click="sortByName" class="sort">
-          Sort by Name {{ character !== null ? '👇' : '☝️' }}
+          Sort by Name {{ sort == 0 ? '👇' : '☝️' }}
         </p>
         <v-row>
           <v-col
@@ -45,7 +45,7 @@ export default {
     return {
       isLoading: false,
       characteres: [],
-      character: null
+      sort: 1
     }
   },
   components: {
@@ -80,26 +80,24 @@ export default {
         })
     },
     sortByName () {
-      const { house } = this.$route.params
+      const sortCharacteres = this.characteres.slice(0)
 
-      if (this.character === null) {
-        getCharacterByHouse({ house })
-          .then(({ data }) => {
-            this.character = data
-            const sort = this.character.slice(0)
-            sort.sort((a, b) => {
-              const x = a.name.toLowerCase()
-              const y = b.name.toLowerCase()
-              return x < y ? -1 : x > y ? 1 : 0
-            })
-            this.characteres = sort
-          })
+      if (this.sort === 1) {
+        sortCharacteres.sort((a, b) => {
+          const x = a.name.toLowerCase()
+          const y = b.name.toLowerCase()
+          return x < y ? -1 : x > y ? 1 : 0
+        })
+        this.characteres = sortCharacteres
+        this.sort = 0
       } else {
-        getCharacterByHouse({ house })
-          .then(({ data }) => {
-            this.characteres = data
-            this.character = null
-          })
+        sortCharacteres.sort((a, b) => {
+          const x = a.name.toLowerCase()
+          const y = b.name.toLowerCase()
+          return y < x ? -1 : y > x ? 1 : 0
+        })
+        this.characteres = sortCharacteres
+        this.sort = 1
       }
     }
   },
@@ -114,5 +112,6 @@ export default {
   .sort {
     margin-bottom: 15px;
     cursor: pointer;
+    display: inline-block;
   }
 </style>
