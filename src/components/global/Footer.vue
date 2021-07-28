@@ -1,7 +1,6 @@
 <template>
   <v-footer
     dark
-    color="footer"
   >
     <v-container>
       <v-card
