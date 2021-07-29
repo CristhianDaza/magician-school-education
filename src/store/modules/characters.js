@@ -1,10 +1,12 @@
 import { getCharacter } from '@/api/getCharacter'
+import { getCharacterByHouse } from '@/api/getCharacterByHouse'
 
 export default {
   namespaced: true,
   state: {
     characters: [],
-    character: null
+    character: null,
+    charactersByHouse: []
   },
   mutations: {
     GET_CHARACTERS (state, payload) {
@@ -12,6 +14,9 @@ export default {
     },
     GET_CHARACTER (state, payload) {
       state.character = payload
+    },
+    GET_CHARACTERS_BY_HOUSE (state, payload) {
+      state.charactersByHouse = payload
     }
   },
   actions: {
@@ -37,6 +42,19 @@ export default {
         })
         .catch(() => {
           commit('GET_CHARACTER', null)
+        })
+        .finally(() => {
+          commit('loading/SET_LOADING', false, { root: true })
+        })
+    },
+    getCharactersByHouse ({ commit }, house) {
+      commit('loading/SET_LOADING', true, { root: true })
+      getCharacterByHouse(house)
+        .then(({ data }) => {
+          commit('GET_CHARACTERS_BY_HOUSE', data)
+        })
+        .catch(() => {
+          commit('GET_CHARACTERS_BY_HOUSE', null)
         })
         .finally(() => {
           commit('loading/SET_LOADING', false, { root: true })

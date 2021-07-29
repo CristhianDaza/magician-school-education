@@ -18,10 +18,10 @@
             sm="3"
             md="3"
             lg="2"
-            v-for="character in characteres"
+            v-for="character in charactersByHouse"
             :key="character.name"
           >
-            <ListCharacteres
+            <ListCharacters
               :character="character"
             />
           </v-col>
@@ -32,41 +32,31 @@
 </template>
 
 <script>
-import { getCharacterByHouse } from '@/api/getCharacterByHouse'
 import { getCharacter } from '@/api/getCharacter'
 import Loader from '@/components/global/Loader.vue'
 import Back from '@/components/global/Back.vue'
-import ListCharacteres from '@/components/House/ListCharacteres.vue'
+import ListCharacters from '@/components/House/ListCharacters.vue'
 import Search from '@/components/House/Search.vue'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'House',
   data () {
     return {
-      isLoading: false,
-      characteres: [],
       sort: 1
     }
   },
   components: {
     Loader,
-    ListCharacteres,
+    ListCharacters,
     Back,
     Search
   },
+  computed: {
+    ...mapState('loading', ['isLoading']),
+    ...mapState('characters', ['charactersByHouse'])
+  },
   methods: {
-    fetchData () {
-      this.isLoading = true
-      const { house } = this.$route.params
-
-      getCharacterByHouse({ house })
-        .then(({ data }) => {
-          this.characteres = data
-        })
-        .finally(() => {
-          this.isLoading = false
-        })
-    },
     searchName (search) {
       const { house } = this.$route.params
       getCharacter()
@@ -76,34 +66,35 @@ export default {
               return character.name.toLowerCase().indexOf(search.toLowerCase()) > -1
             }
           })
-          this.characteres = result
+          this.characters = result
         })
     },
     sortByName () {
-      const sortCharacteres = this.characteres.slice(0)
+      const sortCharacters = this.charactersByHouse.slice(0)
 
       if (this.sort === 1) {
-        sortCharacteres.sort((a, b) => {
+        sortCharacters.sort((a, b) => {
           const x = a.name.toLowerCase()
           const y = b.name.toLowerCase()
           return x < y ? -1 : x > y ? 1 : 0
         })
-        this.characteres = sortCharacteres
+        this.charactersByHouse = sortCharacters
         this.sort = 0
       } else {
-        sortCharacteres.sort((a, b) => {
+        sortCharacters.sort((a, b) => {
           const x = a.name.toLowerCase()
           const y = b.name.toLowerCase()
           return y < x ? -1 : y > x ? 1 : 0
         })
-        this.characteres = sortCharacteres
+        this.charactersByHouse = sortCharacters
         this.sort = 1
       }
-    }
+    },
+    ...mapActions('characters', ['getCharactersByHouse'])
   },
-  created () {
+  mounted () {
     const { house } = this.$route.params
-    this.fetchData(house)
+    this.getCharactersByHouse(house)
   }
 }
 </script>
