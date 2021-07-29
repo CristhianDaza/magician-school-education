@@ -45,7 +45,6 @@ export default {
   created () {
     if (this.character.length === 0) {
       this.getCharactersData()
-      console.log('hola')
     }
   }
 }
