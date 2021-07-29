@@ -39,7 +39,7 @@
 import Loader from '@/components/global/Loader.vue'
 import Back from '@/components/global/Back.vue'
 import ListCharacters from '@/components/House/ListCharacters.vue'
-import { mapState, mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import isLoading from '@/mixins/isLoading'
 
 export default {
@@ -57,7 +57,7 @@ export default {
     Back
   },
   computed: {
-    ...mapState('characters', ['charactersByHouse']),
+    // ...mapState('characters', ['charactersByHouse']),
     ...mapGetters('characters', ['filterByName']),
     search () {
       return this.filterByName(this.searchByName)
