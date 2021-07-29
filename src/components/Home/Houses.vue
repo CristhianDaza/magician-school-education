@@ -38,9 +38,11 @@
 import houses from '@/utils/houses.js'
 import Loader from '@/components/global/Loader.vue'
 import { mapState, mapActions } from 'vuex'
+import isLoading from '@/mixins/isLoading'
 
 export default {
   name: 'Cases',
+  mixins: [isLoading],
   data () {
     return {
       houses
@@ -62,8 +64,7 @@ export default {
     ...mapActions('characters', ['getCharactersData'])
   },
   computed: {
-    ...mapState('characters', ['characters']),
-    ...mapState('loading', ['isLoading'])
+    ...mapState('characters', ['characters'])
   },
   mounted () {
     this.getCharactersData()

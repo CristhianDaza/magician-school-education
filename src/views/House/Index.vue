@@ -38,9 +38,11 @@ import Back from '@/components/global/Back.vue'
 import ListCharacters from '@/components/House/ListCharacters.vue'
 import Search from '@/components/House/Search.vue'
 import { mapState, mapActions } from 'vuex'
+import isLoading from '@/mixins/isLoading'
 
 export default {
   name: 'House',
+  mixins: [isLoading],
   data () {
     return {
       sort: 1
@@ -53,7 +55,6 @@ export default {
     Search
   },
   computed: {
-    ...mapState('loading', ['isLoading']),
     ...mapState('characters', ['charactersByHouse'])
   },
   methods: {

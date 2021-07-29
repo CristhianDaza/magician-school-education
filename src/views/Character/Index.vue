@@ -22,16 +22,17 @@ import Loader from '@/components/global/Loader.vue'
 import Back from '@/components/global/Back.vue'
 import CharacterNameInfo from '@/components/Character/CharacterNameInfo.vue'
 import { mapState, mapActions } from 'vuex'
+import isLoading from '@/mixins/isLoading'
 
 export default {
   name: 'Character',
+  mixins: [isLoading],
   components: {
     Loader,
     Back,
     CharacterNameInfo
   },
   computed: {
-    ...mapState('loading', ['isLoading']),
     ...mapState('characters', ['character'])
   },
   methods: {
