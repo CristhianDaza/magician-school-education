@@ -5,7 +5,7 @@
     </div>
     <v-container v-else>
       <Back />
-      <div class="characterName" v-if="character !== null">
+      <div class="characterName" v-if="character[0] !== null">
         <div class="characterNameImg">
           <img :src="character[0].image" :alt="character[0].name">
         </div>
@@ -21,7 +21,7 @@
 import Loader from '@/components/global/Loader.vue'
 import Back from '@/components/global/Back.vue'
 import CharacterNameInfo from '@/components/Character/CharacterNameInfo.vue'
-import { mapState, mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import isLoading from '@/mixins/isLoading'
 
 export default {
@@ -33,14 +33,20 @@ export default {
     CharacterNameInfo
   },
   computed: {
-    ...mapState('characters', ['character'])
+    ...mapGetters('characters', ['filterCharacter']),
+    character () {
+      const { name } = this.$route.params
+      return this.filterCharacter(name)
+    }
   },
   methods: {
-    ...mapActions('characters', ['getCharacterData'])
+    ...mapActions('characters', ['getCharactersData'])
   },
   created () {
-    const { name } = this.$route.params
-    this.getCharacterData(name)
+    if (this.character.length === 0) {
+      this.getCharactersData()
+      console.log('hola')
+    }
   }
 }
 </script>
