@@ -47,6 +47,9 @@ export default {
   getters: {
     filterCharacter: state => name => {
       return state.characters.filter(character => character.name === name)
+    },
+    filterByName: state => search => {
+      return state.charactersByHouse.filter(character => character.name.toLowerCase().indexOf(search.toLowerCase()) > -1)
     }
   }
 }

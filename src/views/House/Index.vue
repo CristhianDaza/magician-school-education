@@ -6,9 +6,13 @@
     <template v-else>
       <v-container>
         <Back />
-        <Search
-          @input="searchName"
-        />
+          <v-text-field
+            v-model="searchByName"
+            label="Search..."
+            outlined
+            dark
+            hint="Search by name"
+          ></v-text-field>
         <p @click="sortByName" class="sort">
           Sort by Name {{ sort == 0 ? '👇' : '☝️' }}
         </p>
@@ -18,7 +22,7 @@
             sm="3"
             md="3"
             lg="2"
-            v-for="character in charactersByHouse"
+            v-for="character in search"
             :key="character.name"
           >
             <ListCharacters
@@ -32,12 +36,10 @@
 </template>
 
 <script>
-import { getCharacter } from '@/api/getCharacter'
 import Loader from '@/components/global/Loader.vue'
 import Back from '@/components/global/Back.vue'
 import ListCharacters from '@/components/House/ListCharacters.vue'
-import Search from '@/components/House/Search.vue'
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 import isLoading from '@/mixins/isLoading'
 
 export default {
@@ -45,31 +47,23 @@ export default {
   mixins: [isLoading],
   data () {
     return {
-      sort: 1
+      sort: 1,
+      searchByName: ''
     }
   },
   components: {
     Loader,
     ListCharacters,
-    Back,
-    Search
+    Back
   },
   computed: {
-    ...mapState('characters', ['charactersByHouse'])
+    ...mapState('characters', ['charactersByHouse']),
+    ...mapGetters('characters', ['filterByName']),
+    search () {
+      return this.filterByName(this.searchByName)
+    }
   },
   methods: {
-    searchName (search) {
-      const { house } = this.$route.params
-      getCharacter()
-        .then(({ data }) => {
-          const result = data.filter(character => {
-            if (character.house === house) {
-              return character.name.toLowerCase().indexOf(search.toLowerCase()) > -1
-            }
-          })
-          this.characters = result
-        })
-    },
     sortByName () {
       const sortCharacters = this.charactersByHouse.slice(0)
 
