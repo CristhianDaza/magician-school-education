@@ -36,45 +36,37 @@
 
 <script>
 import houses from '@/utils/houses.js'
-import { getCharacter } from '@/api/getCharacter'
 import Loader from '@/components/global/Loader.vue'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'Cases',
   data () {
     return {
-      houses,
-      characteres: null,
-      isLoading: false
+      houses
     }
   },
   components: {
     Loader
   },
   methods: {
-    fetchData () {
-      this.isLoading = true
-      getCharacter()
-        .then(({ data }) => {
-          this.characteres = data
-        })
-        .finally(() => {
-          this.isLoading = false
-        })
-    },
     members (house) {
       const characterCount = []
-      this.characteres.forEach(character => {
+      this.characters.forEach(character => {
         if (house === character.house) {
           characterCount.push(character)
         }
       })
       return characterCount.length
-    }
+    },
+    ...mapActions('characters', ['getCharactersData'])
   },
-  created () {
-    this.fetchData()
-    if (this.characteres !== null) this.members()
+  computed: {
+    ...mapState('characters', ['characters']),
+    ...mapState('loading', ['isLoading'])
+  },
+  mounted () {
+    this.getCharactersData()
   }
 }
 </script>
