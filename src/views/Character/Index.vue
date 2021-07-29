@@ -18,41 +18,28 @@
 </template>
 
 <script>
-import { getCharacter } from '@/api/getCharacter'
 import Loader from '@/components/global/Loader.vue'
 import Back from '@/components/global/Back.vue'
 import CharacterNameInfo from '@/components/Character/CharacterNameInfo.vue'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'Character',
-  data () {
-    return {
-      isLoading: false,
-      character: null
-    }
-  },
   components: {
     Loader,
     Back,
     CharacterNameInfo
   },
+  computed: {
+    ...mapState('loading', ['isLoading']),
+    ...mapState('characters', ['character'])
+  },
   methods: {
-    fetchData () {
-      this.isLoading = true
-      const { name } = this.$route.params
-
-      getCharacter()
-        .then(({ data }) => {
-          const result = data.filter(character => character.name === name)
-          this.character = result
-        })
-        .finally(() => {
-          this.isLoading = false
-        })
-    }
+    ...mapActions('characters', ['getCharacterData'])
   },
   created () {
-    this.fetchData()
+    const { name } = this.$route.params
+    this.getCharacterData(name)
   }
 }
 </script>
