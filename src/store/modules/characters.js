@@ -25,6 +25,7 @@ export default {
         })
         .catch(() => {
           commit('GET_CHARACTERS', null)
+          commit('error/SET_ERROR', true, { root: true })
         })
         .finally(() => {
           commit('loading/SET_LOADING', false, { root: true })
@@ -38,6 +39,7 @@ export default {
         })
         .catch(() => {
           commit('GET_CHARACTERS_BY_HOUSE', null)
+          commit('error/SET_ERROR', true, { root: true })
         })
         .finally(() => {
           commit('loading/SET_LOADING', false, { root: true })

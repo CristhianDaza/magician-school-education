@@ -1,11 +1,11 @@
 export default {
   namespaced: true,
   state: {
-    error: null
+    isError: null
   },
   mutations: {
     SET_ERROR (state, payload) {
-      state.error = payload
+      state.isError = payload
     }
   }
 }

@@ -1,11 +1,17 @@
 <template>
   <div>
-    Error
+    Error {{ errorName }}
   </div>
 </template>
 
 <script>
 export default {
-  namae: 'Error'
+  namae: 'Error',
+  props: {
+    errorName: {
+      type: String,
+      required: true
+    }
+  }
 }
 </script>

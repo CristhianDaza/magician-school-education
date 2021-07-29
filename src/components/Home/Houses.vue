@@ -4,32 +4,39 @@
       <Loader />
     </div>
     <v-container v-else>
-      <h1 class="title">
-        Select House
-      </h1>
-      <v-row class="containerHouses">
-        <v-col
-          cols="12"
-          sm="6"
-          md="6"
-          lg="3"
-          v-for="house in houses"
-          :key="house.id"
-        >
-          <router-link :to="{path: `/${house.name}`}">
-            <h2>
-              {{ house.name }}
-            </h2>
-            <img
-              :alt="house.name"
-              :src="house.image"
-            >
-            <p class="members">
-              <strong>Members:</strong> {{ members(house.name) }}
-            </p>
-          </router-link>
-        </v-col>
-      </v-row>
+      <template v-if="isError">
+        <Error
+          errorName="Error, vuelva a intentarlo"
+        />
+      </template>
+      <template v-else>
+        <h1 class="title">
+          Select House
+        </h1>
+        <v-row class="containerHouses">
+          <v-col
+            cols="12"
+            sm="6"
+            md="6"
+            lg="3"
+            v-for="house in houses"
+            :key="house.id"
+          >
+            <router-link :to="{path: `/${house.name}`}">
+              <h2>
+                {{ house.name }}
+              </h2>
+              <img
+                :alt="house.name"
+                :src="house.image"
+              >
+              <p class="members">
+                <strong>Members:</strong> {{ members(house.name) }}
+              </p>
+            </router-link>
+          </v-col>
+        </v-row>
+      </template>
     </v-container>
   </div>
 </template>
@@ -39,17 +46,20 @@ import houses from '@/utils/houses.js'
 import Loader from '@/components/global/Loader.vue'
 import { mapState, mapActions } from 'vuex'
 import isLoading from '@/mixins/isLoading'
+import isError from '@/mixins/isError'
+import Error from '@/components/global/Error.vue'
 
 export default {
   name: 'Cases',
-  mixins: [isLoading],
+  mixins: [isLoading, isError],
   data () {
     return {
       houses
     }
   },
   components: {
-    Loader
+    Loader,
+    Error
   },
   methods: {
     members (house) {
