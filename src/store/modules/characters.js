@@ -17,9 +17,9 @@ export default {
     }
   },
   actions: {
-    getCharactersData ({ commit }) {
+    async getCharactersData ({ commit }) {
       commit('loading/SET_LOADING', true, { root: true })
-      getCharacter()
+      await getCharacter()
         .then(({ data }) => {
           commit('GET_CHARACTERS', data)
         })
@@ -30,9 +30,9 @@ export default {
           commit('loading/SET_LOADING', false, { root: true })
         })
     },
-    getCharactersByHouse ({ commit }, house) {
+    async getCharactersByHouse ({ commit }, house) {
       commit('loading/SET_LOADING', true, { root: true })
-      getCharacterByHouse(house)
+      await getCharacterByHouse(house)
         .then(({ data }) => {
           commit('GET_CHARACTERS_BY_HOUSE', data)
         })
