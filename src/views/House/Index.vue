@@ -57,7 +57,6 @@ export default {
     Back
   },
   computed: {
-    // ...mapState('characters', ['charactersByHouse']),
     ...mapGetters('characters', ['filterByName']),
     search () {
       return this.filterByName(this.searchByName)
