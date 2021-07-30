@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["Back"],{"49a4":function(n,c,a){"use strict";a.r(c);var t=function(){var n=this,c=n.$createElement,a=n._self._c||c;return a("p",{staticClass:"back",on:{click:function(c){return n.$router.back()}}},[n._v("Go back")])},e=[],r={name:"Back"},u=r,l=a("2877"),o=Object(l["a"])(u,t,e,!1,null,null,null);c["default"]=o.exports}}]);
+//# sourceMappingURL=Back.b7ee302b.js.map
