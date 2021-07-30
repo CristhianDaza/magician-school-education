@@ -42,7 +42,7 @@ export default {
 <style>
   .character {
     min-height: 300px;
-    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
   }
 
   .character:hover {
@@ -55,7 +55,7 @@ export default {
   }
 
   .imgCharacter {
-    padding: 0;
+    padding: 0 !important;
   }
 
   .v-image__image.v-image__image--cover {
