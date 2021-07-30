@@ -6,30 +6,37 @@
     <template v-else>
       <v-container>
         <Back />
-          <v-text-field
-            v-model="searchByName"
-            label="Search..."
-            outlined
-            dark
-            hint="Search by name"
-          ></v-text-field>
-        <p @click="sortByName" class="sort">
-          Sort by Name {{ sort == 0 ? '👇' : '☝️' }}
-        </p>
-        <v-row>
-          <v-col
-            cols="6"
-            sm="3"
-            md="3"
-            lg="2"
-            v-for="character in search"
-            :key="character.name"
-          >
-            <ListCharacters
-              :character="character"
+          <template v-if="isError">
+            <Error
+              errorName="Error. Characters not found, please try again"
             />
-          </v-col>
-        </v-row>
+          </template>
+          <template v-else>
+            <v-text-field
+              v-model="searchByName"
+              label="Search..."
+              outlined
+              dark
+              hint="Search by name"
+            ></v-text-field>
+          <p @click="sortByName" class="sort">
+            Sort by Name {{ sort == 0 ? '👇' : '☝️' }}
+          </p>
+          <v-row>
+            <v-col
+              cols="6"
+              sm="3"
+              md="3"
+              lg="2"
+              v-for="character in search"
+              :key="character.name"
+            >
+              <ListCharacters
+                :character="character"
+              />
+            </v-col>
+          </v-row>
+        </template>
       </v-container>
     </template>
   </div>
@@ -41,10 +48,12 @@ import Back from '@/components/global/Back.vue'
 import ListCharacters from '@/components/House/ListCharacters.vue'
 import { mapActions, mapGetters } from 'vuex'
 import isLoading from '@/mixins/isLoading'
+import isError from '@/mixins/isError'
+import Error from '@/components/global/Error'
 
 export default {
   name: 'House',
-  mixins: [isLoading],
+  mixins: [isLoading, isError],
   data () {
     return {
       sort: 1,
@@ -52,6 +61,7 @@ export default {
     }
   },
   components: {
+    Error,
     Loader,
     ListCharacters,
     Back
