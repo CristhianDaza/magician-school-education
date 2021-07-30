@@ -25,22 +25,18 @@
 </template>
 
 <script>
-import Loader from '@/components/global/Loader.vue'
-import Back from '@/components/global/Back.vue'
-import CharacterNameInfo from '@/components/Character/CharacterNameInfo.vue'
 import { mapActions, mapGetters } from 'vuex'
 import isLoading from '@/mixins/isLoading'
 import isError from '@/mixins/isError'
-import Error from '@/components/global/Error'
 
 export default {
   name: 'Character',
   mixins: [isLoading, isError],
   components: {
-    Error,
-    Loader,
-    Back,
-    CharacterNameInfo
+    Error: () => import(/* webpackChunkName: "Error" */'@/components/global/Error'),
+    Loader: () => import(/* webpackChunkName: "Loader" */'@/components/global/Loader'),
+    Back: () => import(/* webpackChunkName: "Back" */'@/components/global/Back'),
+    CharacterNameInfo: () => import(/* webpackChunkName: "CharacterNameInfo" */'@/components/Character/CharacterNameInfo')
   },
   computed: {
     ...mapGetters('characters', ['filterCharacter']),

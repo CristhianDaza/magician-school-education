@@ -43,13 +43,9 @@
 </template>
 
 <script>
-import Loader from '@/components/global/Loader.vue'
-import Back from '@/components/global/Back.vue'
-import ListCharacters from '@/components/House/ListCharacters.vue'
 import { mapActions, mapGetters } from 'vuex'
 import isLoading from '@/mixins/isLoading'
 import isError from '@/mixins/isError'
-import Error from '@/components/global/Error'
 
 export default {
   name: 'House',
@@ -61,10 +57,10 @@ export default {
     }
   },
   components: {
-    Error,
-    Loader,
-    ListCharacters,
-    Back
+    Error: () => import(/* webpackChunkName: "Error" */'@/components/global/Error'),
+    Loader: () => import(/* webpackChunkName: "Loader" */'@/components/global/Loader'),
+    ListCharacters: () => import(/* webpackChunkName: "ListCharacters" */'@/components/House/ListCharacters.vue'),
+    Back: () => import(/* webpackChunkName: "Back" */'@/components/global/Back')
   },
   computed: {
     ...mapGetters('characters', ['filterByName']),

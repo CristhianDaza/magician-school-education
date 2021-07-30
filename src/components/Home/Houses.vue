@@ -43,11 +43,9 @@
 
 <script>
 import houses from '@/utils/houses.js'
-import Loader from '@/components/global/Loader.vue'
 import { mapState, mapActions } from 'vuex'
 import isLoading from '@/mixins/isLoading'
 import isError from '@/mixins/isError'
-import Error from '@/components/global/Error.vue'
 
 export default {
   name: 'Cases',
@@ -58,8 +56,8 @@ export default {
     }
   },
   components: {
-    Loader,
-    Error
+    Loader: () => import(/* webpackChunkName: "Loader" */'@/components/global/Loader'),
+    Error: () => import(/* webpackChunkName: "Error" */'@/components/global/Error')
   },
   methods: {
     members (house) {
