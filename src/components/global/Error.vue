@@ -1,12 +1,12 @@
 <template>
-  <div>
-    Error {{ errorName }}
+  <div class="componentError">
+    <p>{{ errorName }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  namae: 'Error',
+  name: 'Error',
   props: {
     errorName: {
       type: String,
@@ -15,3 +15,16 @@ export default {
   }
 }
 </script>
+
+<style>
+  .componentError {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+  }
+  .componentError p {
+    font-size: 2rem;
+    color: crimson;
+  }
+</style>

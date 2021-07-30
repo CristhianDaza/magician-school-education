@@ -6,7 +6,7 @@
     <v-container v-else>
       <template v-if="isError">
         <Error
-          errorName="Error, vuelva a intentarlo"
+          errorName="Error. Houses not found, try again"
         />
       </template>
       <template v-else>
