@@ -19,8 +19,8 @@
               dark
               hint="Search by name"
             ></v-text-field>
-          <p @click="sortByName" class="sort">
-            Sort by Name {{ sort == 0 ? '👇' : '☝️' }}
+          <p @click="sortByName(search)" class="sort">
+            Sort by Name {{ sort === 0 ? '👇' : '☝️' }}
           </p>
           <v-row>
             <v-col
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 import isLoading from '@/mixins/isLoading'
 import isError from '@/mixins/isError'
 
@@ -52,7 +52,6 @@ export default {
   mixins: [isLoading, isError],
   data () {
     return {
-      sort: 1,
       searchByName: ''
     }
   },
@@ -63,34 +62,14 @@ export default {
     Back: () => import(/* webpackChunkName: "Back" */'@/components/global/Back')
   },
   computed: {
+    ...mapState('characters', ['sort']),
     ...mapGetters('characters', ['filterByName']),
     search () {
       return this.filterByName(this.searchByName)
     }
   },
   methods: {
-    sortByName () {
-      const sortCharacters = this.charactersByHouse.slice(0)
-
-      if (this.sort === 1) {
-        sortCharacters.sort((a, b) => {
-          const x = a.name.toLowerCase()
-          const y = b.name.toLowerCase()
-          return x < y ? -1 : x > y ? 1 : 0
-        })
-        this.charactersByHouse = sortCharacters
-        this.sort = 0
-      } else {
-        sortCharacters.sort((a, b) => {
-          const x = a.name.toLowerCase()
-          const y = b.name.toLowerCase()
-          return y < x ? -1 : y > x ? 1 : 0
-        })
-        this.charactersByHouse = sortCharacters
-        this.sort = 1
-      }
-    },
-    ...mapActions('characters', ['getCharactersByHouse'])
+    ...mapActions('characters', ['getCharactersByHouse', 'sortByName'])
   },
   mounted () {
     const { house } = this.$route.params

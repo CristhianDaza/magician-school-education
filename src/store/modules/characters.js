@@ -6,7 +6,8 @@ export default {
   state: {
     characters: [],
     character: null,
-    charactersByHouse: []
+    charactersByHouse: [],
+    sort: 1
   },
   mutations: {
     GET_CHARACTERS (state, payload) {
@@ -14,6 +15,9 @@ export default {
     },
     GET_CHARACTERS_BY_HOUSE (state, payload) {
       state.charactersByHouse = payload
+    },
+    CHANGE_SORT (state, payload) {
+      state.sort = payload
     }
   },
   actions: {
@@ -44,6 +48,26 @@ export default {
         .finally(() => {
           commit('loading/SET_LOADING', false, { root: true })
         })
+    },
+    sortByName ({ commit, state }) {
+      const sortCharacters = state.charactersByHouse.slice(0)
+
+      if (state.sort === 1) {
+        sortCharacters.sort((a, b) => {
+          const x = a.name.toLowerCase()
+          const y = b.name.toLowerCase()
+          commit('CHANGE_SORT', 0)
+          return x < y ? -1 : x > y ? 1 : 0
+        })
+      } else {
+        sortCharacters.sort((a, b) => {
+          const x = a.name.toLowerCase()
+          const y = b.name.toLowerCase()
+          commit('CHANGE_SORT', 1)
+          return y < x ? -1 : y > x ? 1 : 0
+        })
+      }
+      commit('GET_CHARACTERS_BY_HOUSE', sortCharacters)
     }
   },
   getters: {
