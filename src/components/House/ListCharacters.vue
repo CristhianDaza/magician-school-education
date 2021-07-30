@@ -11,7 +11,7 @@
       </v-card-text>
       <v-card-title class="nameCharacter">
         <p>
-          {{ character.name }} -
+          {{ character.name }}
         </p>
       </v-card-title>
     </v-card>
