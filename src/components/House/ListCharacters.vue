@@ -3,7 +3,7 @@
     <v-card color="character">
       <v-card-text class="imgCharacter">
         <v-img
-          :src="imageHttps"
+          :src="character.image"
           max-height="200"
           max-width="200"
         >
@@ -25,15 +25,6 @@ export default {
     character: {
       type: Object,
       required: true
-    }
-  },
-  computed: {
-    imageHttps () {
-      if (this.character.image.includes('http')) {
-        return this.character.image.replace('http', 'https')
-      } else {
-        return this.character.image
-      }
     }
   }
 }
