@@ -13,7 +13,7 @@
       <template v-else>
         <div class="characterName" v-if="character[0] !== null">
           <div class="characterNameImg">
-            <img :src="imageHttps" :alt="character[0].name">
+            <img :src="character[0].image" :alt="character[0].name">
           </div>
           <CharacterNameInfo
             :characterInfo="character[0]"
@@ -43,13 +43,6 @@ export default {
     character () {
       const { name } = this.$route.params
       return this.filterCharacter(name)
-    },
-    imageHttps () {
-      if (this.character[0].image.includes('http:')) {
-        return this.character[0].image.replace('http:', 'https:')
-      } else {
-        return this.character[0].image
-      }
     }
   },
   methods: {
