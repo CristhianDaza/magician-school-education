@@ -45,8 +45,8 @@ export default {
       return this.filterCharacter(name)
     },
     imageHttps () {
-      if (this.character[0].image.includes('http')) {
-        return this.character[0].image.replace('http', 'https')
+      if (this.character[0].image.includes('http:')) {
+        return this.character[0].image.replace('http:', 'https:')
       } else {
         return this.character[0].image
       }
